@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+before_script:
+  - tag="${TRAVIS_TAG:-latest}"
+  - image_name="$(echo "${TRAVIS_REPO_SLUG}" | cut -d '/' -f 2)"
+  - docker_org="actions"
+script:
+  - docker build -t ${docker_org}/${image_name}:${tag} .
+before_deploy:
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASS"
+deploy:
+  - provider: script
+    script: docker push ${docker_org}/${image_name}:${tag}
+    on:
+      branch: master
+  - provider: script
+    script: docker push ${docker_org}/${image_name}:${tag}
+    on:
+      branch: master
+      tags: true

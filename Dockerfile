@@ -36,8 +36,7 @@ RUN if [ "x$(ls ${BUILD_DEBS}/)" = "x" ]; then \
 
 # sbt
 RUN cd ${ROOTFS}/opt \
-  && curl -L -o avro-tools.jar http://apache.mirrors.spacedump.net/avro/avro-1.8.2/java/avro-tools-1.8.2.jar \
-  && echo "$SHA256_SUM avro-tools.jar" | sha256sum -c -
+  && curl -L -o avro-tools.jar https://repo1.maven.org/maven2/org/apache/avro/avro-tools/1.8.2/avro-tools-1.8.2.jar
 
 COPY entrypoint.sh ${ROOTFS}/usr/local/bin/entrypoint.sh
 RUN chmod +x ${ROOTFS}/usr/local/bin/entrypoint.sh

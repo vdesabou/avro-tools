@@ -35,9 +35,10 @@ RUN if [ "x$(ls ${BUILD_DEBS}/)" = "x" ]; then \
     fi
 
 # sbt
-RUN cd ${ROOTFS}/opt \
-  && curl -L -o avro-tools.jar https://repo1.maven.org/maven2/org/apache/avro/avro-tools/1.8.2/avro-tools-1.8.2.jar
+# RUN cd ${ROOTFS}/opt \
+#   && curl -L -o avro-tools.jar https://repo1.maven.org/maven2/org/apache/avro/avro-tools/1.8.2/avro-tools-1.8.2.jar
 
+COPY avro-tools-1.12.0-SNAPSHOT.jar ${ROOTFS}/opt/avro-tools.jar
 COPY entrypoint.sh ${ROOTFS}/usr/local/bin/entrypoint.sh
 RUN chmod +x ${ROOTFS}/usr/local/bin/entrypoint.sh
 

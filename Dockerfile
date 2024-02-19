@@ -42,8 +42,7 @@ COPY avro-tools-1.12.0-SNAPSHOT.jar ${ROOTFS}/opt/avro-tools.jar
 COPY entrypoint.sh ${ROOTFS}/usr/local/bin/entrypoint.sh
 RUN chmod +x ${ROOTFS}/usr/local/bin/entrypoint.sh
 
-FROM actions/java:8u181-server-jre-3
-LABEL maintainer = "ilja+docker@bobkevic.com"
+FROM eclipse-temurin:11-jdk
 
 ARG ROOTFS=/build/rootfs
 
